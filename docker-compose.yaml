@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  
+  students-db:
+    image: postgres:11.5
+    environment:
+      - POSTGRES_USER=go
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=go
+  app:
+    build: .
+    depends_on:
+      - students-db
+    environment:
+      - DB_PASS=pass
+    ports:
+      - 8080:8080
